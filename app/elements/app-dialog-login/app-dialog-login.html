@@ -1,0 +1,50 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<dom-module id="app-dialog-login">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <paper-dialog id="dialog">
+      <paper-input label="ユーザーID">{{userid}}</paper-input>
+      <paper-input label="パスワード" type="password">{{password}}</paper-input>
+      <div class="buttons">
+        <paper-button dialog-dismiss>キャンセル</paper-button>
+        <paper-button on-click="{{login}}" dialog-confirm autofocus>ログイン</paper-button>
+      </div>
+    </paper-dialog>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'app-dialog-login',
+
+      properties: {
+
+      },
+
+      login: function() {
+        document.cookie = 'basic=' + btoa(this.userid + ':' + this.password);
+      },
+
+      open: function() {
+        this.dialog.open()
+      }
+    });
+  })();
+  </script>
+</dom-module>

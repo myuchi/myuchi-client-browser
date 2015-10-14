@@ -71,4 +71,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     document.getElementById('mainContainer').scrollTop = 0;
   };
 
+  app.onLoginClick = function() {
+      document.getElementById('loginDialog').open();
+  };
+
+  app.endpoint = 'http://localhost:4000';
+
+  app.handleStatus = function() {
+    if(app.apiStatus.app_name !== 'myuchi') {
+      console.error('not myuchi endpoint')
+      return
+    }
+  };
+
+  app.onConfirmLogin = function() {
+    document.cookie = 'basic=' + btoa(app.userid + ':' + app.password);
+  };
+
 })(document);
